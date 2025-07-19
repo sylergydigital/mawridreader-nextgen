@@ -118,9 +118,6 @@ rclone-r2.conf
 # Wrangler cache
 .wrangler/
 
-# OpenNext build output
-.open-next/
-
 # Test files
 test-*.js
 test-*.ts
