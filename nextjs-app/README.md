@@ -1,6 +1,6 @@
-# Mawrid Reader - Next.js Version
+# Mawrid Reader NextGen - Application
 
-This is the modernized version of Mawrid Reader, migrating from jQuery to Next.js.
+This is the Next.js application directory for the modernized Mawrid Reader, focusing on Arabic-English dictionaries.
 
 ## Getting Started
 
