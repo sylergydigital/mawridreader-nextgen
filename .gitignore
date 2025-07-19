@@ -72,6 +72,9 @@ tramp
 # SpecStory extension history
 .specstory/
 
+# Mawrid Reader Dictionary Scans (symbolic link to aa-net repo)
+data/images
+
 # Local configuration (if you add any)
 config.local.js
 settings.local.js
@@ -90,10 +93,18 @@ TODO.md
 node_modules/
 bower_components/
 
+# Next.js build output
+.next/
+out/
+next-env.d.ts
+
 # Environment files (if you add any)
 .env
 .env.local
 .env.*.local
+
+# Rclone configuration (contains secrets)
+rclone-r2.conf
 
 # Database files (if used locally)
 *.db
@@ -103,6 +114,15 @@ bower_components/
 # Cache directories
 .cache/
 .parcel-cache/
+
+# Wrangler cache
+.wrangler/
+
+# Test files
+test-*.js
+test-*.ts
+test-*.sh
+**/test-*.*
 
 # Archive files (unless intentionally tracked)
 *.zip
@@ -117,3 +137,6 @@ bower_components/
 # Logs directory
 logs/
 *.log.*
+*.log
+rclone-upload.log
+upload.log
