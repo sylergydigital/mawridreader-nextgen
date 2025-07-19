@@ -6,6 +6,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { searchDictionaries } from '@/lib/search/binary-search';
 import { dictionaries } from '@/lib/dictionaries/config';
 import { getImageUrl } from '@/lib/dictionaries/config';
+import { transliterate, hasArabic } from '@/lib/transliteration';
 
 export async function GET(request: NextRequest) {
   try {
@@ -19,6 +20,9 @@ export async function GET(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Convert transliteration to Arabic if needed
+    const searchTerm = hasArabic(query) ? query : transliterate(query);
 
     // Get selected dictionaries or use all if none specified
     const selectedDicts = dictionaryIds.length > 0
@@ -34,8 +38,8 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Perform search
-    const results = searchDictionaries(query, selectedDicts);
+    // Perform search with converted term
+    const results = searchDictionaries(searchTerm, selectedDicts);
 
     // Enhance results with image URLs
     const enhancedResults = results.map(result => ({

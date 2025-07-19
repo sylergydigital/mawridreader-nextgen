@@ -3,12 +3,18 @@
  * Based on the original Mawrid Reader implementation
  */
 
+// Multi-character replacements (must be done first!)
+const multiCharMap: Record<string, string> = {
+  'th': 'ث',
+  'gh': 'غ',
+  'kh': 'خ',
+  'sh': 'ش',
+  'dh': 'ذ',
+};
+
 // Buckwalter-style transliteration mappings
 const buckwalterMap: Record<string, string> = {
-  // Two-letter combinations
-  'v': 'ث', 'V': 'ث',
-  'g': 'غ', 'G': 'غ',
-  'x': 'خ', 'X': 'خ',
+  // Special characters
   '$': 'ش',
   '*': 'ذ',
   
@@ -19,11 +25,15 @@ const buckwalterMap: Record<string, string> = {
   't': 'ت', 'T': 'ط',
   'h': 'ه', 'H': 'ح',
   
-  // Other letters
+  // Case-insensitive (but we include both cases)
+  'v': 'ث', 'V': 'ث',
+  'g': 'غ', 'G': 'غ',
+  'x': 'خ', 'X': 'خ',
   'a': 'ا', 'A': 'ا',
   'b': 'ب', 'B': 'ب',
   'j': 'ج', 'J': 'ج',
   'r': 'ر', 'R': 'ر',
+  'e': 'ع', 'E': 'ع',
   'f': 'ف', 'F': 'ف',
   'q': 'ق', 'Q': 'ق',
   'k': 'ك', 'K': 'ك',
@@ -32,20 +42,10 @@ const buckwalterMap: Record<string, string> = {
   'n': 'ن', 'N': 'ن',
   'w': 'و', 'W': 'و',
   'y': 'ي', 'Y': 'ي',
-  'e': 'ع', 'E': 'ع',
   
   // Numbers (Arabic chat alphabet)
   '3': 'ع',
   '7': 'ح',
-};
-
-// Multi-character replacements
-const multiCharMap: Record<string, string> = {
-  'th': 'ث',
-  'gh': 'غ',
-  'kh': 'خ',
-  'sh': 'ش',
-  'dh': 'ذ',
 };
 
 export function transliterate(input: string): string {
@@ -58,7 +58,9 @@ export function transliterate(input: string): string {
   
   // Apply single character replacements
   Object.entries(buckwalterMap).forEach(([latin, arabic]) => {
-    result = result.replace(new RegExp(`\\${latin}`, 'g'), arabic);
+    // Only escape special regex characters
+    const escaped = latin.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    result = result.replace(new RegExp(escaped, 'g'), arabic);
   });
   
   // Normalize Arabic (all forms of alif to plain alif)
