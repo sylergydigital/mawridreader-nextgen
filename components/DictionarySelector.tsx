@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Dictionary {
   id: string;
@@ -9,29 +9,41 @@ interface Dictionary {
   color: string;
 }
 
-const mockDictionaries: Dictionary[] = [
-  { id: "hw", name: "Hans Wehr", language: "English", color: "bg-red-100" },
-  { id: "ll", name: "Lane's Lexicon", language: "English", color: "bg-blue-100" },
-  { id: "sg", name: "Steingass", language: "English", color: "bg-green-100" },
-  { id: "la", name: "Lisan al-Arab", language: "Arabic", color: "bg-yellow-100" },
+const dictionaries: Dictionary[] = [
+  { id: "hw4", name: "Hans Wehr 4th Edition", language: "Arabic-English", color: "bg-red-100" },
+  { id: "ll", name: "Lane's Lexicon", language: "Arabic-English", color: "bg-gray-100" },
+  { id: "sg", name: "Steingass", language: "Persian-English", color: "bg-green-100" },
 ];
 
-export default function DictionarySelector() {
-  const [selectedDicts, setSelectedDicts] = useState<string[]>(["hw", "ll"]);
+interface DictionarySelectorProps {
+  selectedDictionaries?: string[];
+  onChange?: (selected: string[]) => void;
+}
+
+export default function DictionarySelector({ 
+  selectedDictionaries = ["hw4", "ll", "sg"],
+  onChange 
+}: DictionarySelectorProps) {
+  const [selectedDicts, setSelectedDicts] = useState<string[]>(selectedDictionaries);
+
+  useEffect(() => {
+    setSelectedDicts(selectedDictionaries);
+  }, [selectedDictionaries]);
 
   const toggleDictionary = (id: string) => {
-    setSelectedDicts(prev =>
-      prev.includes(id)
-        ? prev.filter(d => d !== id)
-        : [...prev, id]
-    );
+    const newSelection = selectedDicts.includes(id)
+      ? selectedDicts.filter(d => d !== id)
+      : [...selectedDicts, id];
+    
+    setSelectedDicts(newSelection);
+    onChange?.(newSelection);
   };
 
   return (
     <div className="w-full max-w-md">
       <h3 className="text-lg font-semibold mb-3">Select Dictionaries</h3>
       <div className="space-y-2">
-        {mockDictionaries.map(dict => (
+        {dictionaries.map(dict => (
           <label
             key={dict.id}
             className={`flex items-center p-3 rounded-lg cursor-pointer transition-colors ${

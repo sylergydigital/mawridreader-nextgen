@@ -1,0 +1,14 @@
+name = "mawridreader-r2"
+compatibility_date = "2024-01-01"
+
+[[r2_buckets]]
+binding = "MAWRID_BUCKET"
+bucket_name = "mawrid-dictionaries"
+
+# Development environment
+[env.development]
+name = "mawridreader-r2-dev"
+
+# Production environment  
+[env.production]
+name = "mawridreader-r2-prod"

@@ -1,139 +1,112 @@
-# Mawrid Reader NextGen
+# Mawrid Reader (Next.js)
 
-A modern, high-performance web application for searching classical Arabic-English dictionaries. This is a complete rewrite of the [original Mawrid Reader](https://github.com/ejtaal/mr) using Next.js, TypeScript, and modern web technologies.
+A modern web application for searching Arabic dictionaries including Hans Wehr, Lane's Lexicon, and Steingass. This is a Next.js modernization of the original jQuery-based Mawrid Reader.
 
-> 📚 **Note**: The original documentation has been preserved in [`docs/legacy-readme.html`](docs/legacy-readme.html)
+## Features
 
-## 🎯 Project Focus
+- 🔍 Search Arabic dictionaries using Arabic text or transliteration
+- 📚 Support for Hans Wehr, Lane's Lexicon, and Steingass dictionaries
+- 🖼️ High-quality scanned dictionary pages hosted on Cloudflare R2
+- ⌨️ Buckwalter transliteration support
+- 🔍 Zoom, rotate, and navigate dictionary pages
+- 📱 Responsive design for mobile and desktop
 
-This modernization focuses exclusively on **Arabic-English dictionaries**, providing researchers, students, and Arabic language enthusiasts with fast, searchable access to the most authoritative classical Arabic lexicons.
-
-## 📖 Featured Dictionaries
-
-### Primary Sources
-- **Hans Wehr** - The standard modern Arabic-English dictionary
-- **Lane's Lexicon** - Edward William Lane's comprehensive 19th-century Arabic-English lexicon
-- **Steingass** - F. Steingass's Persian, Arabic, and English dictionary focusing on classical usage
-
-### Supplementary Resources
-- **Hava** - Arabic-English dictionary with classical focus
-- **Penrice** - A Dictionary and Glossary of the Koran
-- **Brill** - Quranic Arabic corpus and dictionary
-
-## 🚀 Key Features
-
-- **Lightning-fast search** - Binary search through pre-indexed content
-- **No OCR required** - Clever indexing system maps words directly to scanned pages
-- **Smart transliteration** - Type in English (ktb) or Arabic (كتب)
-- **Multiple search modes** - Root-based and alphabetical search
-- **Offline capable** - Progressive Web App for use without internet
-- **Mobile-first design** - Responsive interface for all devices
-
-## 🛠️ Technology Stack
-
-- **Frontend**: Next.js 14+ with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **State Management**: React Context + Zustand
-- **Search**: Custom binary search implementation
-- **Deployment**: Vercel/Netlify ready
-
-## 🏃 Getting Started
+## Getting Started
 
 ### Prerequisites
-- Node.js 18+ and npm/yarn/pnpm
-- Git
+
+- Node.js 18+ and npm
+- Cloudflare R2 account (for hosting dictionary images)
 
 ### Installation
 
+1. Clone the repository:
 ```bash
-# Clone the repository
-git clone https://github.com/sylergydigital/mawridreader-nextgen.git
-cd mawridreader-nextgen
+git clone https://github.com/yourusername/mawrid-reader.git
+cd mawrid-reader
+```
 
-# Switch to modernization branch
-git checkout nextjs-modernization
-
-# Install dependencies
-cd nextjs-app
+2. Install dependencies:
+```bash
 npm install
+```
 
-# Run development server
+3. Set up environment variables:
+```bash
+cp .env.example .env
+```
+
+Edit `.env` with your Cloudflare R2 credentials.
+
+4. Run the development server:
+```bash
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to see the application.
 
-## 🏗️ Project Structure
+## Deployment
 
-```
-mawridreader-nextgen/
-├── nextjs-app/            # Next.js application
-│   ├── app/              # App router pages and API routes
-│   ├── components/       # React components
-│   ├── lib/             # Utilities and helpers
-│   ├── public/          # Static assets
-│   └── data/            # Dictionary indexes and metadata
-├── docs/                # Documentation
-│   ├── architecture.md  # System design
-│   ├── search-system.md # Search implementation
-│   └── ...             # Additional docs
-└── legacy/             # Original jQuery implementation
+### Cloudflare Pages (Recommended)
+
+The app is designed to work perfectly with Cloudflare Pages:
+
+```bash
+npm run build
 ```
 
-## 🔍 How It Works
+Then connect your GitHub repository to Cloudflare Pages for automatic deployments.
 
-The genius of Mawrid Reader lies in its approach to making scanned dictionaries searchable:
+### Environment Variables
 
-1. **Pre-built indexes** map Arabic roots to page numbers
-2. **Binary search** quickly locates entries (searches 1000s of pages in milliseconds)
-3. **Smart transliteration** converts Latin input to Arabic
-4. **Direct page display** shows the actual scanned dictionary page
+The following environment variables are required:
 
-No OCR or text extraction needed - just clever data structures!
+- `R2_ACCESS_KEY_ID` - Your Cloudflare R2 access key
+- `R2_SECRET_ACCESS_KEY` - Your Cloudflare R2 secret key
+- `NEXT_PUBLIC_R2_BUCKET_URL` - Your R2 bucket URL or custom domain
+- `NEXT_PUBLIC_R2_PREFIX` - Prefix for dictionary images (default: "mawridreader")
+- `NEXT_PUBLIC_USE_LOCAL_IMAGES` - Set to "true" for local development
 
-## 🤝 Contributing
+## Project Structure
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+```
+nextjs-app/
+├── app/                    # Next.js app directory
+│   ├── api/               # API routes (to be implemented)
+│   ├── components/        # Page-specific components
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout
+│   └── page.tsx           # Home page
+├── components/            # Shared components
+│   ├── SearchBox.tsx      # Search input component
+│   └── DictionarySelector.tsx # Dictionary selection
+├── lib/                   # Utility functions
+│   └── transliteration.ts # Arabic transliteration
+├── public/                # Static assets
+├── types/                 # TypeScript types
+└── data/                  # Dictionary data (to be added)
+```
 
-### Development Workflow
+## Development
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+To add new features:
 
-## 📈 Roadmap
+1. Create components in `components/` directory
+2. Add utility functions in `lib/`
+3. Define types in `types/`
+4. Create API routes in `app/api/`
 
-- [x] Initial Next.js setup
-- [x] Basic search interface
-- [ ] Dictionary data integration
-- [ ] Search implementation
-- [ ] Page viewer component
-- [ ] Keyboard shortcuts
-- [ ] PWA features
-- [ ] Performance optimizations
-- [ ] User preferences
-- [ ] Advanced search filters
+## Scripts
 
-## 📜 License
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
 
-This project is licensed under the GNU GPL v3 - see the [LICENSE](LICENSE) file for details.
+## Next Steps
 
-## 🙏 Acknowledgments
-
-- Original Mawrid Reader by Erik Taal
-- Dictionary digitization efforts by various contributors
-- Arabic language scholars and lexicographers
-
-## 📞 Contact
-
-- **Issues**: [GitHub Issues](https://github.com/sylergydigital/mawridreader-nextgen/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/sylergydigital/mawridreader-nextgen/discussions)
-
----
-
-<div align="center">
-  Made with ❤️ for Arabic language learners and researchers
-</div>
+1. Implement search functionality with dictionary indexes
+2. Create page viewer component for displaying results
+3. Add API routes for fetching dictionary data
+4. Implement keyboard shortcuts
+5. Add PWA support for offline usage

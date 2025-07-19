@@ -72,6 +72,9 @@ tramp
 # SpecStory extension history
 .specstory/
 
+# Mawrid Reader Dictionary Scans (symbolic link to aa-net repo)
+data/images
+
 # Local configuration (if you add any)
 config.local.js
 settings.local.js
@@ -100,6 +103,9 @@ next-env.d.ts
 .env.local
 .env.*.local
 
+# Rclone configuration (contains secrets)
+rclone-r2.conf
+
 # Database files (if used locally)
 *.db
 *.sqlite
@@ -108,6 +114,15 @@ next-env.d.ts
 # Cache directories
 .cache/
 .parcel-cache/
+
+# Wrangler cache
+.wrangler/
+
+# Test files
+test-*.js
+test-*.ts
+test-*.sh
+**/test-*.*
 
 # Archive files (unless intentionally tracked)
 *.zip
@@ -122,3 +137,6 @@ next-env.d.ts
 # Logs directory
 logs/
 *.log.*
+*.log
+rclone-upload.log
+upload.log

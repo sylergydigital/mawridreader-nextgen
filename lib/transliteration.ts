@@ -73,3 +73,20 @@ export function normalizeArabic(input: string): string {
     .replace(/[ىئ]/g, 'ي')    // Normalize yaa variants
     .replace(/ة/g, 'ه');      // Normalize taa marbuuta
 }
+
+// Import and re-export Arabic utilities
+export { arabicNormalize, arabicCompare, hasArabic, getArabicRoot } from './transliteration/arabic-utils';
+
+// Additional transliteration functions
+export function buckwalterToArabic(input: string): string {
+  return transliterate(input);
+}
+
+export function arabicToBuckwalter(input: string): string {
+  // Reverse mapping - simplified version
+  let result = input;
+  Object.entries(buckwalterMap).forEach(([latin, arabic]) => {
+    result = result.replace(new RegExp(arabic, 'g'), latin);
+  });
+  return result;
+}
