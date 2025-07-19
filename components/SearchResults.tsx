@@ -16,6 +16,15 @@ interface SearchResult {
   nextPage?: { page: number; url: string } | null;
 }
 
+interface PageData {
+  dictionary: string;
+  dictionaryName: string;
+  page: number;
+  imageUrl: string;
+  prevPage?: { page: number; url: string } | null;
+  nextPage?: { page: number; url: string } | null;
+}
+
 interface SearchResultsProps {
   results: SearchResult[];
   query: string;
@@ -23,6 +32,7 @@ interface SearchResultsProps {
 
 export function SearchResults({ results, query }: SearchResultsProps) {
   const [selectedTab, setSelectedTab] = useState(results[0]?.dictionary || '');
+  const [pageData, setPageData] = useState<Record<string, PageData>>({});
 
   if (results.length === 0) {
     return (
@@ -39,6 +49,30 @@ export function SearchResults({ results, query }: SearchResultsProps) {
     }
     return acc;
   }, {} as Record<string, SearchResult>);
+
+  // Handle page navigation
+  const handlePageChange = async (dictionaryId: string, newPage: number) => {
+    try {
+      const response = await fetch(`/api/page?dict=${dictionaryId}&page=${newPage}`);
+      const data = await response.json();
+      
+      if (response.ok) {
+        setPageData(prev => ({
+          ...prev,
+          [dictionaryId]: data
+        }));
+      } else {
+        console.error('Page navigation error:', data.error);
+      }
+    } catch (error) {
+      console.error('Page navigation error:', error);
+    }
+  };
+
+  // Get current page data for a dictionary (either from pageData state or original result)
+  const getCurrentPageData = (dictionaryId: string): PageData => {
+    return pageData[dictionaryId] || resultsByDict[dictionaryId];
+  };
 
   return (
     <div className="space-y-4">
@@ -69,32 +103,36 @@ export function SearchResults({ results, query }: SearchResultsProps) {
           ))}
         </TabsList>
 
-        {Object.entries(resultsByDict).map(([dictId, result]) => (
-          <TabsContent
-            key={dictId}
-            value={dictId}
-            className="mt-4 h-[800px]"
-          >
-            <div className="space-y-2 mb-4">
-              <p className="text-sm text-gray-600">
-                Found on page {result.page} - "{result.word}"
-              </p>
-            </div>
-            
-            <PageViewer
-              imageUrl={result.imageUrl}
-              dictionaryName={result.dictionaryName}
-              page={result.page}
-              prevPageUrl={result.prevPage?.url}
-              nextPageUrl={result.nextPage?.url}
-              onPageChange={(newPage) => {
-                // TODO: Implement page change handler
-                console.log('Page change to:', newPage);
-              }}
-              className="h-full"
-            />
-          </TabsContent>
-        ))}
+        {Object.entries(resultsByDict).map(([dictId, originalResult]) => {
+          const currentData = getCurrentPageData(dictId);
+          return (
+            <TabsContent
+              key={dictId}
+              value={dictId}
+              className="mt-4 h-[800px]"
+            >
+              <div className="space-y-2 mb-4">
+                <p className="text-sm text-gray-600">
+                  {pageData[dictId] ? (
+                    `Viewing page ${currentData.page}`
+                  ) : (
+                    `Found on page ${originalResult.page} - "${originalResult.word}"`
+                  )}
+                </p>
+              </div>
+              
+              <PageViewer
+                imageUrl={currentData.imageUrl}
+                dictionaryName={currentData.dictionaryName}
+                page={currentData.page}
+                prevPageUrl={currentData.prevPage?.url}
+                nextPageUrl={currentData.nextPage?.url}
+                onPageChange={(newPage) => handlePageChange(dictId, newPage)}
+                className="h-full"
+              />
+            </TabsContent>
+          );
+        })}
       </Tabs>
     </div>
   );
