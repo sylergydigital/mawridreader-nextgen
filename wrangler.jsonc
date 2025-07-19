@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  "name": "mawridreader-nextgen",
+  "compatibility_date": "2024-12-30",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  
+  // R2 bucket binding for dictionary images
+  "r2_buckets": [
+    {
+      "binding": "MAWRID_BUCKET",
+      "bucket_name": "mawrid-dictionaries"
+    }
+  ],
+  
+  // Environment configuration
+  "env": {
+    "development": {
+      "name": "mawridreader-nextgen-dev"
+    },
+    "production": {
+      "name": "mawridreader-nextgen-prod"
+    }
+  }
+}
