@@ -98,6 +98,9 @@ bower_components/
 out/
 next-env.d.ts
 
+# OpenNext build output (contains sensitive environment variables)
+.open-next/
+
 # Environment files (if you add any)
 .env
 .env.local
