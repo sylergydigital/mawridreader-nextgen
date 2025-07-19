@@ -10,9 +10,9 @@ interface Dictionary {
 }
 
 const dictionaries: Dictionary[] = [
-  { id: "hw4", name: "Hans Wehr 4th Edition", language: "Arabic-English", color: "bg-red-100" },
-  { id: "ll", name: "Lane's Lexicon", language: "Arabic-English", color: "bg-gray-100" },
-  { id: "sg", name: "Steingass", language: "Persian-English", color: "bg-green-100" },
+  { id: "hw4", name: "Hans Wehr 4th Edition", language: "Arabic-English", color: "bg-red-100 dark:bg-red-900/20" },
+  { id: "ll", name: "Lane's Lexicon", language: "Arabic-English", color: "bg-gray-100 dark:bg-gray-800" },
+  { id: "sg", name: "Steingass", language: "Persian-English", color: "bg-green-100 dark:bg-green-900/20" },
 ];
 
 interface DictionarySelectorProps {
@@ -49,7 +49,7 @@ export default function DictionarySelector({
             className={`flex items-center p-3 rounded-lg cursor-pointer transition-colors ${
               selectedDicts.includes(dict.id)
                 ? dict.color
-                : "bg-gray-100 hover:bg-gray-200"
+                : "bg-surface-secondary hover:bg-surface-tertiary"
             }`}
           >
             <input
@@ -59,8 +59,8 @@ export default function DictionarySelector({
               className="mr-3"
             />
             <div>
-              <div className="font-medium">{dict.name}</div>
-              <div className="text-sm text-gray-600">{dict.language}</div>
+              <div className="font-medium text-text-primary">{dict.name}</div>
+              <div className="text-sm text-text-secondary">{dict.language}</div>
             </div>
           </label>
         ))}

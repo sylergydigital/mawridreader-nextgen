@@ -5,12 +5,68 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Semantic text colors */
+  --text-primary: #171717;
+  --text-secondary: #525252;
+  --text-muted: #737373;
+  
+  /* Surface colors */
+  --surface: #ffffff;
+  --surface-secondary: #f5f5f5;
+  --surface-tertiary: #e5e5e5;
+  
+  /* Border colors */
+  --border: #e5e5e5;
+  --border-input: #d1d5db;
+  
+  /* Interactive colors */
+  --interactive-primary: #2563eb;
+  --interactive-primary-hover: #1d4ed8;
+  --interactive-secondary: #f3f4f6;
+  --interactive-secondary-hover: #e5e7eb;
+  
+  /* Status colors */
+  --status-warning: #ea580c;
+  --status-warning-bg: #fed7aa;
+  --status-success: #16a34a;
+  --status-success-bg: #bbf7d0;
+  --status-error: #dc2626;
+  --status-error-bg: #fecaca;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    
+    /* Semantic text colors - improved contrast for dark mode */
+    --text-primary: #f5f5f5;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    
+    /* Surface colors */
+    --surface: #171717;
+    --surface-secondary: #262626;
+    --surface-tertiary: #404040;
+    
+    /* Border colors */
+    --border: #404040;
+    --border-input: #525252;
+    
+    /* Interactive colors */
+    --interactive-primary: #3b82f6;
+    --interactive-primary-hover: #2563eb;
+    --interactive-secondary: #374151;
+    --interactive-secondary-hover: #4b5563;
+    
+    /* Status colors - adjusted for dark mode */
+    --status-warning: #f97316;
+    --status-warning-bg: #431407;
+    --status-success: #22c55e;
+    --status-success-bg: #14532d;
+    --status-error: #ef4444;
+    --status-error-bg: #7f1d1d;
   }
 }
 

@@ -37,7 +37,7 @@ export function SearchResults({ results, query }: SearchResultsProps) {
   if (results.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-500">No results found for "{query}"</p>
+        <p className="text-text-muted">No results found for "{query}"</p>
       </div>
     );
   }
@@ -112,7 +112,7 @@ export function SearchResults({ results, query }: SearchResultsProps) {
               className="mt-4 h-[800px]"
             >
               <div className="space-y-2 mb-4">
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-text-secondary">
                   {pageData[dictId] ? (
                     `Viewing page ${currentData.page}`
                   ) : (

@@ -57,10 +57,10 @@ export default function Home() {
           <h1 className="text-4xl font-bold mb-4">
             Mawrid Reader
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-text-secondary">
             Modern Arabic Dictionary Interface
           </p>
-          <div className="mt-4 text-sm text-orange-600 bg-orange-50 inline-block px-4 py-2 rounded-lg">
+          <div className="mt-4 text-sm text-status-warning bg-status-warning-bg inline-block px-4 py-2 rounded-lg">
             🚧 Next.js Migration in Progress 🚧
           </div>
         </header>
@@ -85,7 +85,7 @@ export default function Home() {
             {isSearching ? (
               <div className="flex items-center justify-center py-12">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-                <span className="ml-3 text-gray-600">Searching...</span>
+                <span className="ml-3 text-text-secondary">Searching...</span>
               </div>
             ) : (
               <SearchResults results={searchResults} query={searchQuery} />

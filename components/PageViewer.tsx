@@ -311,7 +311,7 @@ export function PageViewer({
           {error ? (
             <div className="text-center p-8">
               <p className="text-red-500 mb-2">Failed to load image</p>
-              <p className="text-sm text-gray-500">{imageUrl}</p>
+              <p className="text-sm text-text-muted">{imageUrl}</p>
             </div>
           ) : (
             <img
@@ -346,7 +346,7 @@ export function PageViewer({
             Previous
           </Button>
           
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-text-muted">
             {isTouchDevice() 
               ? "Pinch to zoom, drag to pan" 
               : "Drag to pan, arrow keys to navigate"
