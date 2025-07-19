@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import SearchBox from "@/components/SearchBox";
 import DictionarySelector from "@/components/DictionarySelector";
 import { SearchResults } from "@/components/SearchResults";
@@ -21,6 +21,19 @@ export default function Home() {
   const [selectedDictionaries, setSelectedDictionaries] = useState<string[]>(['hw4', 'll', 'sg']);
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  
+  // Ref for auto-scrolling to search results
+  const searchResultsRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll to search results when they load
+  useEffect(() => {
+    if (searchResults.length > 0 && searchResultsRef.current) {
+      searchResultsRef.current.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }, [searchResults]);
 
   const handleSearch = async (query: string) => {
     setSearchQuery(query);
@@ -81,7 +94,7 @@ export default function Home() {
         </div>
 
         {searchQuery && (
-          <div className="mt-8">
+          <div ref={searchResultsRef} className="mt-8">
             {isSearching ? (
               <div className="flex items-center justify-center py-12">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
