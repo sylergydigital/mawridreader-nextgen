@@ -1,0 +1,119 @@
+# Operating System Files
+# ======================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# Editor and IDE Files
+# ====================
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# IntelliJ IDEA / WebStorm
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*.swn
+.*.swp
+.*.swo
+.*.swn
+Session.vim
+.netrwhist
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Temporary Files
+# ===============
+
+*.log
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+.tmp/
+
+# Project Specific
+# ================
+
+# SpecStory extension history
+.specstory/
+
+# Local configuration (if you add any)
+config.local.js
+settings.local.js
+
+# Private notes or documentation
+/private/
+/notes/
+TODO.md
+
+# Build artifacts (if you add build processes)
+/dist/
+/build/
+/out/
+
+# Dependencies (if you add package management)
+node_modules/
+bower_components/
+
+# Environment files (if you add any)
+.env
+.env.local
+.env.*.local
+
+# Database files (if used locally)
+*.db
+*.sqlite
+*.sqlite3
+
+# Cache directories
+.cache/
+.parcel-cache/
+
+# Archive files (unless intentionally tracked)
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Image sources (if you store large PSD/AI files)
+*.psd
+*.ai
+
+# Logs directory
+logs/
+*.log.*
