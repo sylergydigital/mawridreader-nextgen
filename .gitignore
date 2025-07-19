@@ -90,6 +90,11 @@ TODO.md
 node_modules/
 bower_components/
 
+# Next.js build output
+.next/
+out/
+next-env.d.ts
+
 # Environment files (if you add any)
 .env
 .env.local
