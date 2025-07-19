@@ -110,3 +110,30 @@ To add new features:
 3. Add API routes for fetching dictionary data
 4. Implement keyboard shortcuts
 5. Add PWA support for offline usage
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+
+**Code license: GNU GPL v3. © 2011-2015 by Abdurahman Erik Taal**  
+**Dua-ware: You must make dua for everyone involved in this project at least once if you're using this software :)**
+
+This project is a Next.js modernization of the original [Mawrid Reader](https://github.com/ejtaal/mr) by Abdurahman Erik Taal.
+
+### License Summary
+
+This is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+## Acknowledgments
+
+- **Abdurahman Erik Taal** for creating the original [Mawrid Reader](https://github.com/ejtaal/mr) and all the contributors to that project
+- Team Sylergy Digital for their contributions and support
+- The original Mawrid Reader developers for their pioneering work
+- Hans Wehr, Edward Lane, and Francis Joseph Steingass for their invaluable Arabic dictionaries
+- Abdul Hafiz for the Lanes Lexicon index and suggestions
+- Abd Shomad for Hans Wehr 4th print, Brill and Penrice indexes
+- Malaysian students of Arabic for the Steingass index
+- All the volunteers and contributors who helped improve the original project
+- The Free Software Foundation for the GNU General Public License
